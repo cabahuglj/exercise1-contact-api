@@ -4,13 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class QueryFormatException extends Exception {
+public class EntityNotFoundException extends Exception {
+
   /**
    * 
    */
-  private static final long serialVersionUID = -1602941540913862180L;
+  private static final long serialVersionUID = -7953435684839759048L;
 
-  public QueryFormatException(String errMsg) {
+  public EntityNotFoundException(String errMsg) {
     super(errMsg);
   }
 }

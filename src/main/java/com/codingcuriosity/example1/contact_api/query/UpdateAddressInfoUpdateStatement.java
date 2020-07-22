@@ -7,20 +7,19 @@ import com.codingcuriosity.example1.contact_api.db.AddressInfoDbTable.AddressInf
 import com.codingcuriosity.example1.contact_api.entity.Address;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
 
-public class AddAddressInfoQueryStatement extends SqlStatement {
-  private final String retField;
-  private final String contactId;
+public class UpdateAddressInfoUpdateStatement extends SqlStatement {
+  private final String addressId;
   private final Address address;
 
-  public AddAddressInfoQueryStatement(String contactid, Address dat) {
+  public UpdateAddressInfoUpdateStatement(String addressid, Address dat) {
     super(AddressInfoDbTable.INSTANCE);
-    this.retField = AddressInfoColumn.ADDRESS_ID.getName();
-    this.contactId = contactid;
+    this.addressId = addressid;
     this.address = dat;
   }
 
   @Override
   public void build() throws QueryFormatException {
+
     boolean hasType = (this.address.getType() != null);
     boolean hasNumber = (this.address.getNumber() > 0);
     boolean hasStreet = (this.address.getStreet() != null);
@@ -29,9 +28,7 @@ public class AddAddressInfoQueryStatement extends SqlStatement {
     boolean hasState = (this.address.getState() != null);
     boolean hasZipCode = (this.address.getZipCode() != null);
 
-    List<String> idSequence = new ArrayList<>();
     List<String> valAddressSequence = new ArrayList<>();
-    List<String> valSequence = new ArrayList<>();
 
     if (hasType) {
       valAddressSequence.add(String.format(SqlStatement.COMPVALFMT, this.address.getType()));
@@ -78,16 +75,15 @@ public class AddAddressInfoQueryStatement extends SqlStatement {
     String addressValSeqStr = String.join(",", valAddressSequence);
     String addressValFmt = "\'(%s)\'";
 
-    idSequence.add(AddressInfoColumn.ADDRESS.getName());
-    valSequence.add(String.format(addressValFmt, addressValSeqStr));
+    List<String> stmtSequence = new ArrayList<>();
+    stmtSequence.add(String.format(MAP_EDIT_VAL, AddressInfoColumn.ADDRESS.getName(),
+        String.format(addressValFmt, addressValSeqStr)));
 
-    idSequence.add(AddressInfoColumn.CONTACT_ID.getName());
-    valSequence.add(String.format(SqlStatement.VALFMT, this.contactId));
-
-    String idSeqStr = String.join(",", idSequence);
-    String valSeqStr = String.join(",", valSequence);
-
-    String sqlFmt = "INSERT INTO %s ( %s ) VALUES ( %s ) RETURNING %s";
-    sqlStatement = String.format(sqlFmt, this.table.getName(), idSeqStr, valSeqStr, this.retField);
+    String stmtSeqStr = String.join(",", stmtSequence);
+    String addrIdColName = AddressInfoColumn.ADDRESS_ID.getName();
+    String sqlFmt = "UPDATE %s SET %s WHERE %s = \'%s\'";
+    sqlStatement =
+        String.format(sqlFmt, this.table.getName(), stmtSeqStr, addrIdColName, this.addressId);
   }
+
 }
