@@ -1,18 +1,18 @@
 package com.codingcuriosity.example1.contact_api.query;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommunicationInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AddCommunicationInfoQueryStatement extends SqlStatement {
+public class AddCommInfoQueryStatement extends SqlStatement {
   private final String retField;
   private final String contactId;
   private final Communication comm;
 
-  public AddCommunicationInfoQueryStatement(String contactid, Communication dat) {
+  public AddCommInfoQueryStatement(String contactid, Communication dat) {
     super(CommunicationInfoDbTable.INSTANCE);
     this.retField = CommunicationInfoColumn.COMM_ID.getName();
     this.contactId = contactid;
@@ -21,8 +21,8 @@ public class AddCommunicationInfoQueryStatement extends SqlStatement {
 
   @Override
   public void build() throws QueryFormatException {
-    boolean hasType = (this.comm.getType() != null);
-    boolean hasValue = (this.comm.getValue() != null);
+    final boolean hasType = (this.comm.getType() != null);
+    final boolean hasValue = (this.comm.getValue() != null);
 
     List<String> idSequence = new ArrayList<>();
     List<String> valSequence = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.codingcuriosity.example1.contact_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,26 +30,31 @@ public class Identification {
   }
 
   @JsonProperty("FirstName")
+  @JsonAlias({"firstname", "firstName"})
   public String getFirstName() {
     return this.firstName;
   }
 
   @JsonProperty("LastName")
+  @JsonAlias({"lastname", "lastName"})
   public String getLastName() {
     return this.lastName;
   }
 
   @JsonProperty("DOB")
+  @JsonAlias({"dob"})
   public String getDob() {
     return this.dob;
   }
 
   @JsonProperty(value = "Gender", required = false)
+  @JsonAlias({"gender"})
   public String getGender() {
     return this.gender;
   }
 
   @JsonProperty("Title")
+  @JsonAlias({"title"})
   public String getTitle() {
     return this.title;
   }

@@ -1,11 +1,11 @@
 package com.codingcuriosity.example1.contact_api.mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import org.springframework.jdbc.core.RowMapper;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommInfoTrnsColumn;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommunicationInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
 
 public class CommunicationRowMapper implements RowMapper<Communication> {
 

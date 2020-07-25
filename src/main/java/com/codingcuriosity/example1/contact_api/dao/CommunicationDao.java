@@ -1,8 +1,8 @@
 package com.codingcuriosity.example1.contact_api.dao;
 
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.entity.CommId;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
+import java.util.List;
 
 public interface CommunicationDao {
   public abstract List<Communication> findAll(String contactid);
@@ -12,4 +12,6 @@ public interface CommunicationDao {
   public abstract void updateCommunication(String commid, Communication dat);
 
   public abstract void deleteCommunication(String commid);
+
+  public abstract void deleteAllCommunication(String contactid);
 }

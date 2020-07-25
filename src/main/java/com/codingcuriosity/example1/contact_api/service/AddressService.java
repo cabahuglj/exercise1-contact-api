@@ -1,8 +1,8 @@
 package com.codingcuriosity.example1.contact_api.service;
 
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.entity.Address;
 import com.codingcuriosity.example1.contact_api.entity.AddressId;
+import java.util.List;
 
 public interface AddressService {
   List<Address> findAll(String contactid);
@@ -12,4 +12,6 @@ public interface AddressService {
   void updateAddress(String addressid, Address dat);
 
   void deleteAddress(String addressid);
+
+  void deleteAllAddress(String contactid);
 }

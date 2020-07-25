@@ -1,11 +1,11 @@
 package com.codingcuriosity.example1.contact_api.service;
 
-import java.util.List;
-import javax.annotation.Resource;
-import org.springframework.stereotype.Component;
 import com.codingcuriosity.example1.contact_api.dao.CommunicationDao;
 import com.codingcuriosity.example1.contact_api.entity.CommId;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CommunicationServiceImpl implements CommunicationService {
@@ -31,5 +31,10 @@ public class CommunicationServiceImpl implements CommunicationService {
   @Override
   public void deleteCommunication(String commid) {
     commDao.deleteCommunication(commid);
+  }
+
+  @Override
+  public void deleteAllCommunication(String contactid) {
+    commDao.deleteAllCommunication(contactid);
   }
 }

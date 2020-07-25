@@ -1,18 +1,18 @@
 package com.codingcuriosity.example1.contact_api.query;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommunicationInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UpdateCommunicationQueryStatement extends SqlStatement {
+public class UpdateCommInfoQueryStatement extends SqlStatement {
   private final String retField;
   private final String commId;
   private final Communication comm;
 
-  public UpdateCommunicationQueryStatement(String commid, Communication dat) {
+  public UpdateCommInfoQueryStatement(String commid, Communication dat) {
     super(CommunicationInfoDbTable.INSTANCE);
     this.retField = CommunicationInfoColumn.CONTACT_ID.getName();
     this.commId = commid;
@@ -21,8 +21,8 @@ public class UpdateCommunicationQueryStatement extends SqlStatement {
 
   @Override
   public void build() throws QueryFormatException {
-    boolean hasType = (this.comm.getType() != null);
-    boolean hasValue = (this.comm.getValue() != null);
+    final boolean hasType = (this.comm.getType() != null);
+    final boolean hasValue = (this.comm.getValue() != null);
 
     List<String> stmtSequence = new ArrayList<>();
     String typeValStr = "";

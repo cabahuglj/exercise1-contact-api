@@ -7,10 +7,10 @@ import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.Comm
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommunicationInfoColumn;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
 
-public class ReadCommunicationInfoQueryStatement extends SqlStatement {
+public class ReadCommInfoQueryStatement extends SqlStatement {
   private final String contactId;
 
-  public ReadCommunicationInfoQueryStatement(String contactid) {
+  public ReadCommInfoQueryStatement(String contactid) {
     super(CommunicationInfoDbTable.INSTANCE);
     this.contactId = contactid;
   }

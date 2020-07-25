@@ -1,10 +1,10 @@
 package com.codingcuriosity.example1.contact_api.mapper;
 
+import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.BasicInfoColumn;
+import com.codingcuriosity.example1.contact_api.entity.Identification;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
-import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.BasicInfoColumn;
-import com.codingcuriosity.example1.contact_api.entity.Identification;
 
 public class IdentificationRowMapper implements RowMapper<Identification> {
 

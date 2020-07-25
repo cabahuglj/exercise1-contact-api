@@ -1,5 +1,6 @@
 package com.codingcuriosity.example1.contact_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,37 +34,44 @@ public class Address {
     return this.addressid;
   }
 
-  @JsonProperty("type")
+  @JsonProperty("type ")
+  @JsonAlias({"Type", "type"})
   public final String getType() {
     return this.type;
   }
 
   @JsonProperty("number")
+  @JsonAlias({"Number"})
   public final int getNumber() {
     return this.number;
   }
 
   @JsonProperty("street")
+  @JsonAlias({"Street"})
   public final String getStreet() {
     return this.street;
   }
 
   @JsonProperty("Unit")
+  @JsonAlias({"unit"})
   public final String getUnit() {
     return this.unit;
   }
 
   @JsonProperty("City")
+  @JsonAlias({"city"})
   public final String getCity() {
     return this.city;
   }
 
   @JsonProperty("State")
+  @JsonAlias({"state"})
   public final String getState() {
     return this.state;
   }
 
   @JsonProperty("zipcode")
+  @JsonAlias({"ZipCode", "zipCode"})
   public final String getZipCode() {
     return this.zipCode;
   }

@@ -1,11 +1,11 @@
 package com.codingcuriosity.example1.contact_api.query;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.db.AddressInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.AddressInfoDbTable.AddressInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Address;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddAddressInfoQueryStatement extends SqlStatement {
   private final String retField;
@@ -21,17 +21,15 @@ public class AddAddressInfoQueryStatement extends SqlStatement {
 
   @Override
   public void build() throws QueryFormatException {
-    boolean hasType = (this.address.getType() != null);
-    boolean hasNumber = (this.address.getNumber() > 0);
-    boolean hasStreet = (this.address.getStreet() != null);
-    boolean hasUnit = (this.address.getUnit() != null);
-    boolean hasCity = (this.address.getCity() != null);
-    boolean hasState = (this.address.getState() != null);
-    boolean hasZipCode = (this.address.getZipCode() != null);
+    final boolean hasType = (this.address.getType() != null);
+    final boolean hasNumber = (this.address.getNumber() > 0);
+    final boolean hasStreet = (this.address.getStreet() != null);
+    final boolean hasUnit = (this.address.getUnit() != null);
+    final boolean hasCity = (this.address.getCity() != null);
+    final boolean hasState = (this.address.getState() != null);
+    final boolean hasZipCode = (this.address.getZipCode() != null);
 
-    List<String> idSequence = new ArrayList<>();
     List<String> valAddressSequence = new ArrayList<>();
-    List<String> valSequence = new ArrayList<>();
 
     if (hasType) {
       valAddressSequence.add(String.format(SqlStatement.COMPVALFMT, this.address.getType()));
@@ -75,6 +73,8 @@ public class AddAddressInfoQueryStatement extends SqlStatement {
       valAddressSequence.add(String.format(SqlStatement.EMPTYCOMPVAL));
     }
 
+    List<String> idSequence = new ArrayList<>();
+    List<String> valSequence = new ArrayList<>();
     String addressValSeqStr = String.join(",", valAddressSequence);
     String addressValFmt = "\'(%s)\'";
 

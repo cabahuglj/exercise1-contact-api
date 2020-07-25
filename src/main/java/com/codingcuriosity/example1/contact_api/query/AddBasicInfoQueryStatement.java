@@ -1,10 +1,10 @@
 package com.codingcuriosity.example1.contact_api.query;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.BasicInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Identification;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddBasicInfoQueryStatement extends SqlStatement {
   private final String retField;
@@ -18,11 +18,11 @@ public class AddBasicInfoQueryStatement extends SqlStatement {
 
   @Override
   public void build() {
-    boolean hasFirstName = (this.id.getFirstName() != null);
-    boolean hasLastName = (this.id.getLastName() != null);
-    boolean hasBirthdate = (this.id.getDob() != null);
-    boolean hasGender = (this.id.getGender() != null);
-    boolean hasTitle = (this.id.getTitle() != null);
+    final boolean hasFirstName = (this.id.getFirstName() != null);
+    final boolean hasLastName = (this.id.getLastName() != null);
+    final boolean hasBirthdate = (this.id.getDob() != null);
+    final boolean hasGender = (this.id.getGender() != null);
+    final boolean hasTitle = (this.id.getTitle() != null);
 
     List<String> idSequence = new ArrayList<>();
     List<String> valSequence = new ArrayList<>();

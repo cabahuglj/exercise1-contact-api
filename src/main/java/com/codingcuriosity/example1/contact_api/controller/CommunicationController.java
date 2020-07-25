@@ -1,5 +1,8 @@
 package com.codingcuriosity.example1.contact_api.controller;
 
+import com.codingcuriosity.example1.contact_api.entity.CommId;
+import com.codingcuriosity.example1.contact_api.entity.Communication;
+import com.codingcuriosity.example1.contact_api.service.CommunicationService;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.codingcuriosity.example1.contact_api.entity.CommId;
-import com.codingcuriosity.example1.contact_api.entity.Communication;
-import com.codingcuriosity.example1.contact_api.service.CommunicationService;
 
 @RestController
 @RequestMapping("/communications")
@@ -42,5 +42,10 @@ public class CommunicationController {
   @DeleteMapping(value = "/delete/{commId}")
   public void deleteCommunication(@PathVariable(value = "commId") String commId) {
     commService.deleteCommunication(commId);
+  }
+
+  @DeleteMapping(value = "/deleteAll/{contactId}")
+  public void deleteAllCommunication(@PathVariable(value = "contactId") String contactId) {
+    commService.deleteAllCommunication(contactId);
   }
 }

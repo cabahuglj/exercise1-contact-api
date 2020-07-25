@@ -1,11 +1,12 @@
 package com.codingcuriosity.example1.contact_api.service;
 
+import com.codingcuriosity.example1.contact_api.dao.IdentificationDao;
+import com.codingcuriosity.example1.contact_api.entity.Contact;
+import com.codingcuriosity.example1.contact_api.entity.ContactRes;
+import com.codingcuriosity.example1.contact_api.entity.Identification;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
-import com.codingcuriosity.example1.contact_api.dao.IdentificationDao;
-import com.codingcuriosity.example1.contact_api.entity.Contact;
-import com.codingcuriosity.example1.contact_api.entity.Identification;
 
 @Component
 public class IdentificationServiceImpl implements IdentificationService {
@@ -23,8 +24,8 @@ public class IdentificationServiceImpl implements IdentificationService {
   }
 
   @Override
-  public void insertIdentification(Identification dat) {
-    identificationDao.insertIdentification(dat);
+  public ContactRes insertIdentification(Contact dat) {
+    return identificationDao.insertIdentification(dat);
   }
 
   @Override
@@ -35,5 +36,10 @@ public class IdentificationServiceImpl implements IdentificationService {
   @Override
   public void deleteIdentification(String contactid) {
     identificationDao.deleteIdentification(contactid);
+  }
+
+  @Override
+  public void deleteAllIdentification() {
+    identificationDao.deleteAllIdentification();
   }
 }

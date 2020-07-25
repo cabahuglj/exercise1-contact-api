@@ -4,18 +4,19 @@ import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.CommunicationInfoDbTable.CommunicationInfoColumn;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
 
-public class DeleteCommunicationInfoUpdateStatement extends SqlStatement {
-  private final String commId;
+public class DeleteGrpCommInfoUpdateStatement extends SqlStatement {
+  private final String contactId;
 
-  public DeleteCommunicationInfoUpdateStatement(String commid) {
+  public DeleteGrpCommInfoUpdateStatement(String contactid) {
     super(CommunicationInfoDbTable.INSTANCE);
-    this.commId = commid;
+    this.contactId = contactid;
   }
 
   @Override
   public void build() throws QueryFormatException {
     String sqlFmt = "DELETE FROM %s WHERE %s = \'%s\'";
     sqlStatement = String.format(sqlFmt, this.table.getName(),
-        CommunicationInfoColumn.COMM_ID.getName(), this.commId);
+        CommunicationInfoColumn.CONTACT_ID.getName(), this.contactId);
   }
+
 }

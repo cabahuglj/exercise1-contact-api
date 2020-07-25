@@ -6,7 +6,7 @@ import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatExcep
 
 public abstract class SqlStatement implements SqlBuildable {
 
-  public static enum ConditionOper {
+  public enum ConditionOper {
     OR("OR"), //
     AND("AND");
 
@@ -49,7 +49,8 @@ public abstract class SqlStatement implements SqlBuildable {
     }
 
     String getText() {
-      return String.format("", this.cond1.getText(), this.oper.getCond(), this.cond2.getText());
+      return String.format("%s %s %s", this.cond1.getText(), this.oper.getCond(),
+          this.cond2.getText());
     }
   }
 
@@ -69,10 +70,10 @@ public abstract class SqlStatement implements SqlBuildable {
   static final String INTVALFMT = "%d";
 
   // Error Format for UUID related errors
-  final static String ERR_UUID_FMT = "%s provided is not a valid UUID. %s = %s";
+  static final String ERR_UUID_FMT = "%s provided is not a valid UUID. %s = %s";
 
   // Map format for SQL statements related to UPDATE
-  final static String MAP_EDIT_VAL = "%s = %s";
+  static final String MAP_EDIT_VAL = "%s = %s";
 
   final DbTable table;
   String sqlStatement = "";
@@ -85,22 +86,7 @@ public abstract class SqlStatement implements SqlBuildable {
     this.table = table;
   }
 
-  String getCondition() {
-    return ((null != this.condition) ? this.condition.getText() : "");
-  }
-
-  public String getSqlStatement() {
-    return this.sqlStatement;
-  }
-
-  public void setCondition(Enum<? extends DbColumn> key, String val) throws QueryFormatException {
-    if (null == key) {
-      throw new QueryFormatException("condition key can neither be null nor blank");
-    }
-
-    this.condition = new ConditionItem(this.table.getColumnName(key), val);
-  }
-
+  // Utility method to build a multiple condition
   private void setMultCondition(Enum<? extends DbColumn> key, String val,
       ConditionOper operFromPrevCond) {
     ConditionItem condition2 = new ConditionItem(this.table.getColumnName(key), val);
@@ -109,6 +95,40 @@ public abstract class SqlStatement implements SqlBuildable {
     this.condition = new ConditionItem(compCond.getText());
   }
 
+  String getCondition() {
+    return ((null != this.condition) ? this.condition.getText() : "");
+  }
+
+  public String getSqlStatement() {
+    return this.sqlStatement;
+  }
+
+  /**
+   * Sets a single condition.
+   * 
+   * @param key DB table column name.
+   * @param val DB table row value for the given column name.
+   * @throws QueryFormatException when <code>key</code> is <code>null</code>.
+   */
+  public void setCondition(Enum<? extends DbColumn> key, String val) throws QueryFormatException {
+    if (null == key) {
+      throw new QueryFormatException("condition key cannot be null.");
+    }
+
+    this.condition = new ConditionItem(this.table.getColumnName(key), val);
+  }
+
+  /**
+   * Appends an additional condition to the previous condition.
+   * 
+   * @param key DB table column name.
+   * @param val DB table row value for the given column name.
+   * @param operFromPrevCond operation of the new condition to the existing condition. Example: If
+   *        previous condition is <code>contactid = 'abc'</code>, and key, value, and
+   *        operFromPrevCond are 'commid', 'def', and ' OR respectively, the resulting condition
+   *        becomes <code>contactid = 'abc' OR commid = 'def'</code>
+   * @throws QueryFormatException when <code>key</code> is <code>null</code>.
+   */
   public void setCondition(Enum<? extends DbColumn> key, String val, ConditionOper operFromPrevCond)
       throws QueryFormatException {
     if (null == this.condition) {
@@ -122,5 +142,4 @@ public abstract class SqlStatement implements SqlBuildable {
       setMultCondition(key, val, operFromPrevCond);
     }
   }
-
 }

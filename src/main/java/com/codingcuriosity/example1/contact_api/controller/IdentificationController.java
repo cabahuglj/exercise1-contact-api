@@ -1,5 +1,9 @@
 package com.codingcuriosity.example1.contact_api.controller;
 
+import com.codingcuriosity.example1.contact_api.entity.Contact;
+import com.codingcuriosity.example1.contact_api.entity.ContactRes;
+import com.codingcuriosity.example1.contact_api.entity.Identification;
+import com.codingcuriosity.example1.contact_api.service.IdentificationService;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.codingcuriosity.example1.contact_api.entity.Contact;
-import com.codingcuriosity.example1.contact_api.entity.Identification;
-import com.codingcuriosity.example1.contact_api.service.IdentificationService;
 
 @RestController
 @RequestMapping("/contact")
@@ -32,8 +33,8 @@ public class IdentificationController {
   }
 
   @PostMapping(value = "/add")
-  public void createIdentification(@RequestBody Identification dat) {
-    identificationService.insertIdentification(dat);
+  public ContactRes createIdentification(@RequestBody Contact dat) {
+    return identificationService.insertIdentification(dat);
   }
 
   @PutMapping(value = "/update/{contactId}")
@@ -45,5 +46,10 @@ public class IdentificationController {
   @DeleteMapping(value = "/delete/{contactId}")
   public void deleteIdentification(@PathVariable(value = "contactId") String contactid) {
     identificationService.deleteIdentification(contactid);
+  }
+
+  @DeleteMapping(value = "/deleteAll")
+  public void deleteAllIdentification() {
+    identificationService.deleteAllIdentification();
   }
 }

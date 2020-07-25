@@ -1,10 +1,10 @@
 package com.codingcuriosity.example1.contact_api.query;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.db.CommPrefDbTable;
 import com.codingcuriosity.example1.contact_api.db.CommPrefDbTable.CommPrefColumn;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddCommPrefQueryStatement extends SqlStatement {
   private final String retField;

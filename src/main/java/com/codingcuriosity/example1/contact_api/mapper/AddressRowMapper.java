@@ -1,11 +1,11 @@
 package com.codingcuriosity.example1.contact_api.mapper;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import org.springframework.jdbc.core.RowMapper;
 import com.codingcuriosity.example1.contact_api.db.AddressInfoDbTable.AddressCompColumn;
 import com.codingcuriosity.example1.contact_api.db.AddressInfoDbTable.AddressInfoColumn;
 import com.codingcuriosity.example1.contact_api.entity.Address;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
 
 public class AddressRowMapper implements RowMapper<Address> {
 

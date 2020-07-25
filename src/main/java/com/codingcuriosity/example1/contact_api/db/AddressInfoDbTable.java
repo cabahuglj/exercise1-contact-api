@@ -3,7 +3,7 @@ package com.codingcuriosity.example1.contact_api.db;
 public enum AddressInfoDbTable implements DbTable {
   INSTANCE;
 
-  private static final String name = "addressinfo";
+  private static final String NAME = "addressinfo";
 
   public enum AddressInfoColumn implements DbColumn {
     ADDRESS_ID("addressid"), //
@@ -45,7 +45,7 @@ public enum AddressInfoDbTable implements DbTable {
 
   @Override
   public String getName() {
-    return name;
+    return NAME;
   }
 
   @Override

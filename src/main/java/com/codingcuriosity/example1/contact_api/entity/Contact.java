@@ -1,9 +1,9 @@
 package com.codingcuriosity.example1.contact_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Contact {
   private final Identification identification;

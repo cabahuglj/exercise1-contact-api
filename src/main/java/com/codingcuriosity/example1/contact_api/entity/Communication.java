@@ -1,5 +1,6 @@
 package com.codingcuriosity.example1.contact_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,11 +31,13 @@ public class Communication {
   }
 
   @JsonProperty("type")
+  @JsonAlias({"Type"})
   public final String getType() {
     return this.type;
   }
 
   @JsonProperty("value")
+  @JsonAlias({"Value"})
   public final String getValue() {
     return this.value;
   }
@@ -46,6 +49,7 @@ public class Communication {
   }
 
   @JsonProperty(value = "preferred", required = false)
+  @JsonAlias({"Preferred"})
   public final boolean isPreferred() {
     return this.preferred;
   }

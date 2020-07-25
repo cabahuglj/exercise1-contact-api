@@ -1,8 +1,8 @@
 package com.codingcuriosity.example1.contact_api.service;
 
-import java.util.List;
 import com.codingcuriosity.example1.contact_api.entity.CommId;
 import com.codingcuriosity.example1.contact_api.entity.Communication;
+import java.util.List;
 
 public interface CommunicationService {
   List<Communication> findAll(String contactid);
@@ -12,4 +12,6 @@ public interface CommunicationService {
   void updateCommunication(String commid, Communication dat);
 
   void deleteCommunication(String commid);
+
+  void deleteAllCommunication(String contactid);
 }
