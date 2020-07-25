@@ -10,6 +10,6 @@ public class CommonCheck {
   private CommonCheck() {}
 
   public static boolean isValidUuid(String uuid) {
-    return (!UUIDPTRN.matcher(uuid).matches());
+    return (UUIDPTRN.matcher(uuid).matches());
   }
 }
