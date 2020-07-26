@@ -28,14 +28,13 @@ public class Address {
     this.contactId = contactid;
   }
 
-  @JsonIgnore
-  @JsonProperty("addressid")
+  @JsonProperty(value = "id", required = false)
   public final String getAddressId() {
     return this.addressid;
   }
 
-  @JsonProperty("type ")
-  @JsonAlias({"Type", "type"})
+  @JsonProperty("type")
+  @JsonAlias({"Type", "type "})
   public final String getType() {
     return this.type;
   }

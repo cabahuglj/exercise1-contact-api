@@ -24,8 +24,7 @@ public class Communication {
     this.preferred = true;
   }
 
-  @JsonIgnore
-  @JsonProperty("commid")
+  @JsonProperty(value = "id", required = false)
   public final String getCommId() {
     return this.commid;
   }

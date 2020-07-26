@@ -2,6 +2,7 @@ package com.codingcuriosity.example1.contact_api.query;
 
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.BasicInfoColumn;
+import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.GenderEnum;
 import com.codingcuriosity.example1.contact_api.entity.Identification;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class AddBasicInfoQueryStatement extends SqlStatement {
     if (hasGender) {
       valSequence.add(String.format(SqlStatement.VALFMT, this.id.getGender()));
     } else {
-      valSequence.add(SqlStatement.EMPTYVAL);
+      valSequence.add(String.format(SqlStatement.VALFMT, GenderEnum.OTHER.getVal()));
     }
 
     idSequence.add(BasicInfoColumn.TITLE.getName());

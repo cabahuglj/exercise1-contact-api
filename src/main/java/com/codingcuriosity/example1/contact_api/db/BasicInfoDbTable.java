@@ -25,6 +25,22 @@ public enum BasicInfoDbTable implements DbTable {
     }
   }
 
+  public enum GenderEnum {
+    MALE("M"), //
+    FEMALE("F"), //
+    OTHER("O");
+
+    private final String val;
+
+    private GenderEnum(String val) {
+      this.val = val;
+    }
+
+    public String getVal() {
+      return this.val;
+    }
+  }
+
   @Override
   public String getName() {
     return NAME;

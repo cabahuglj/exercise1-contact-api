@@ -1,7 +1,6 @@
 package com.codingcuriosity.example1.contact_api.entity;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Identification {
@@ -23,8 +22,7 @@ public class Identification {
     this.title = title;
   }
 
-  @JsonIgnore
-  @JsonProperty("contactid")
+  @JsonProperty(value = "id", required = false)
   public String getContactId() {
     return this.contactid;
   }

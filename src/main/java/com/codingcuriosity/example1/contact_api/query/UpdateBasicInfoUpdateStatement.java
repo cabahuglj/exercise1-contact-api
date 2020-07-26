@@ -2,6 +2,7 @@ package com.codingcuriosity.example1.contact_api.query;
 
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable;
 import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.BasicInfoColumn;
+import com.codingcuriosity.example1.contact_api.db.BasicInfoDbTable.GenderEnum;
 import com.codingcuriosity.example1.contact_api.entity.Identification;
 import com.codingcuriosity.example1.contact_api.query.exception.QueryFormatException;
 import java.util.ArrayList;
@@ -56,9 +57,10 @@ public class UpdateBasicInfoUpdateStatement extends SqlStatement {
     if (hasGender) {
       genderValStr = String.format(SqlStatement.VALFMT, this.id.getGender());
     } else {
-      genderValStr = SqlStatement.EMPTYVAL;
+      genderValStr = String.format(SqlStatement.VALFMT, GenderEnum.OTHER.getVal());
     }
     stmtSequence.add(String.format(MAP_EDIT_VAL, BasicInfoColumn.GENDER.getName(), genderValStr));
+
 
     String titleValStr = "";
     if (hasTitle) {
